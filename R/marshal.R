@@ -46,28 +46,3 @@ marshal_internal = function(x, dict) {
   UseMethod("marshal_internal")
 }
 
-#' @export
-custom_env = function(data)  {
-  e = new.env()
-  e$data = data
-  e$other_fn = function() {
-    print("do some stuff")
-  }
-  class(e) = c("custom_env", "environment")
-  return(e)
-}
-
-#' @export
-container = function(...) {
-  structure(list(...), class = "container")
-}
-
-#' @export
-marshal_internal.container = function(x, dict) {
-  x_marshaled = lapply(x, function(obj) {
-    marshal_internal_wrapper(obj, dict)
-  })
-  names(x_marshaled) = names(x)
-  x = structure(list(marshaled = x_marshaled), class = c("container_marshaled", "marshaled"))
-  return(x)
-}

@@ -25,11 +25,6 @@ unmarshal_internal = function(x, dict_in, dict_out) {
 
 
 #' @export
-unmarshal_internal.custom_env_marshaled = function(x, dict_in, dict_out) {
-  custom_env(x$marshaled)
-}
-
-#' @export
 unmarshal = function(x) {
   stopifnot(inherits(x, "marshaled_with_dict"))
   dict_out = new.env()
@@ -38,7 +33,3 @@ unmarshal = function(x) {
   return(out)
 }
 
-#' @export
-unmarshal_internal.container_marshaled = function(x, dict_in, dict_out) {
-  do.call(container, args = lapply(x$marshaled, unmarshal_internal_wrapper, dict_in = dict_in, dict_out = dict_out))
-}
