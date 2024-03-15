@@ -1,8 +1,3 @@
-# Package authors have to implement:
-# * marshal_internal, marshal_id
-# * unmarshal_internal, unmarshal_id
-#
-
 #' @export
 marshal_internal_wrapper = function(x, dict) {
   id = marshal_id(x)
