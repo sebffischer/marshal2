@@ -33,3 +33,17 @@ classes need to implement:
     further down. The `dict_in` is the dictionary of already unmarshaled
     objects, and `dict_out` is the dictionary of objects that are
     currently being unmarshaled.
+
+## Example
+
+``` r
+library(marshal2)
+library(testthat)
+e = custom_env(1)
+cont = container(e, e)
+contm = marshal(cont)
+contr = unmarshal(contm)
+
+expect_true(identical(contr[[1]], contr[[2]]))
+expect_equal(cont, contr)
+```

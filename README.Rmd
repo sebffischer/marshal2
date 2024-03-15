@@ -21,3 +21,21 @@ Package developers that implement custom marshaling methods for their classes ne
    In case the marshaled object contains other marshaled objects, they must be unmarshaled using `unmarshal_internal_wrapper`, passing `dict_in` and `dict_out` further down.
     The `dict_in` is the dictionary of already unmarshaled objects, and `dict_out` is the dictionary of objects that are currently being unmarshaled.
 
+
+
+
+## Example
+
+
+```{r}
+library(marshal2)
+library(testthat)
+e = custom_env(1)
+cont = container(e, e)
+contm = marshal(cont)
+contr = unmarshal(contm)
+
+expect_true(identical(contr[[1]], contr[[2]]))
+expect_equal(cont, contr)
+```
+
