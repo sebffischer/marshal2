@@ -38,4 +38,3 @@ contr = unmarshal(contm)
 expect_true(identical(contr[[1]], contr[[2]]))
 expect_equal(cont, contr)
 ```
-

@@ -36,3 +36,8 @@ unmarshal_internal.custom_env_marshaled = function(x, dict_in, dict_out) {
   custom_env(x$marshaled)
 }
 
+
+#' @export
+marshal_internal.custom_env = function(x, dict) {
+  structure(list(marshaled = x$data), class = c("custom_env_marshaled", "marshaled"))
+}

@@ -34,11 +34,6 @@ marshal = function(x) {
 }
 
 
-#' @export
-marshal_internal.custom_env = function(x, dict) {
-  structure(list(marshaled = x$data), class = c("custom_env_marshaled", "marshaled"))
-}
-
 # marshal_internal and unmarshal_internal must always call marshal_internal_wrapper and unmarshal_internal_wrapper
 # when they redirect marshalling to sub-objects.
 # Then, they must also pass the dict, dict_in and dict_out to these functions
